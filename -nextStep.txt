@@ -1,0 +1,31 @@
+1. Install backend dependencies
+Windows:
+py -m pip install -r backend\requirements.txt
+Mac:
+python3 -m pip install -r backend/requirements.txt
+
+
+2. Import Excel data into the database
+Windows:
+py backend\import_excel.py
+Mac:
+python3 backend/import_excel.py
+
+
+3. Start the backend server
+Windows:
+py backend\app.py
+Mac:
+python3 backend/app.py
+Backend URL:
+http://127.0.0.1:8000
+
+
+4. Start the frontend server
+Windows:
+py -m http.server 5500
+Mac:
+python3 -m http.server 5500
+Frontend URL:
+http://127.0.0.1:5500
+Important: You must run both the backend on 127.0.0.1:8000 and the frontend static server on 127.0.0.1:5500. If only the frontend is running, the page can load visually but cannot fetch people or event data.

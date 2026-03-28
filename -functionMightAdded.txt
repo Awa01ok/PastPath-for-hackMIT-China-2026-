@@ -1,0 +1,28 @@
+PastPath possible future features
+
+1. UI / navigation
+   - top search bar with tag-based filtering
+   - viewed history and recommended people in sidebar
+   - full-screen life route mode at end of story flow
+
+2. Map interaction
+   - route fly-lines between locations
+   - different event icons for war / conference / diplomacy / movement
+   - bottom-right mini world map
+   - layer switching for fronts / camps / territories
+   - optional full-screen map mode
+
+3. Timeline system
+   - global historical events triggered by timeline position
+   - timeline synced with person events
+   - timeline linked to territory change layers
+
+4. Data / backend
+   - tag definition table and metadata management
+   - image library classification in database
+   - territory geojson management through database
+   - richer API endpoints for filtering by tag / year / region
+
+5. Recommendation
+   - keep feature ideas separated from current stable scope
+   - complete timeline + territories integration before adding more UI layers
