@@ -1,0 +1,172 @@
+{
+  "version": 8,
+  "metadata": {"maputnik:renderer": "mlgljs"},
+  "sources": {
+    "ne2_shaded": {
+      "maxzoom": 6,
+      "tileSize": 256,
+      "tiles": [
+        "https://tiles.openfreemap.org/natural_earth/ne2sr/{z}/{x}/{y}.png"
+      ],
+      "type": "raster"
+    },
+    "openmaptiles": {
+      "type": "vector",
+      "url": "https://tiles.openfreemap.org/planet"
+    }
+  },
+  "sprite": "https://tiles.openfreemap.org/sprites/ofm_f384/ofm",
+  "glyphs": "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "minzoom": 0,
+      "maxzoom": 24,
+      "paint": {"background-color": "rgba(222, 218, 210, 1)"}
+    },
+    {
+      "id": "natural_earth",
+      "type": "raster",
+      "source": "ne2_shaded",
+      "maxzoom": 7,
+      "paint": {
+        "raster-opacity": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          0.6,
+          6,
+          0.1
+        ]
+      }
+    },
+    {
+      "id": "landcover_wood",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["==", ["get", "class"], "wood"],
+      "paint": {
+        "fill-antialias": false,
+        "fill-color": "rgba(147, 175, 116, 1)",
+        "fill-opacity": 0.4
+      }
+    },
+    {
+      "id": "landcover_grass",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["==", ["get", "class"], "grass"],
+      "paint": {
+        "fill-antialias": false,
+        "fill-color": "rgba(211, 223, 202, 1)",
+        "fill-opacity": 0.3
+      }
+    },
+    {
+      "id": "landcover_ice",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["==", ["get", "class"], "ice"],
+      "paint": {
+        "fill-antialias": false,
+        "fill-color": "rgba(224, 236, 236, 1)",
+        "fill-opacity": 0.8
+      }
+    },
+    {
+      "id": "waterway_tunnel",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "filter": ["==", ["get", "brunnel"], "tunnel"],
+      "paint": {
+        "line-color": "#D5E0E4",
+        "line-dasharray": [3, 3],
+        "line-gap-width": ["interpolate", ["linear"], ["zoom"], 12, 0, 20, 6],
+        "line-opacity": 1,
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.4],
+          ["zoom"],
+          8,
+          1,
+          20,
+          2
+        ]
+      }
+    },
+    {
+      "id": "waterway_river",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "filter": [
+        "all",
+        ["==", ["get", "class"], "river"],
+        ["!=", ["get", "brunnel"], "tunnel"]
+      ],
+      "layout": {"line-cap": "round"},
+      "paint": {
+        "line-color": "#D5E0E4",
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.2],
+          ["zoom"],
+          11,
+          0.5,
+          20,
+          6
+        ]
+      }
+    },
+    {
+      "id": "waterway_other",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "filter": [
+        "all",
+        ["!=", ["get", "class"], "river"],
+        ["!=", ["get", "brunnel"], "tunnel"]
+      ],
+      "layout": {"line-cap": "round"},
+      "paint": {
+        "line-color": "#D5E0E4",
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.3],
+          ["zoom"],
+          13,
+          0.5,
+          20,
+          6
+        ]
+      }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "minzoom": 0,
+      "maxzoom": 24,
+      "filter": ["!=", ["get", "brunnel"], "tunnel"],
+      "paint": {"fill-color": "rgba(199, 211, 216, 1)"}
+    },
+    {
+      "id": "landcover_sand",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["==", ["get", "class"], "sand"],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "rgba(226, 216, 194, 1)"}
+    }
+  ],
+  "id": "717btf4"
+}
